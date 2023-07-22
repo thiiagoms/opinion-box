@@ -54,6 +54,11 @@ DATABASE_PASS=
 
 04 -) Importe o banco de dados localizado em `infra/database.sql` para seu servidor.
 
+05 -) instale as dependências do projeto utilizando o composer:
+```bash
+opinion-box $ composer install
+```
+
 ## Uso
 
 01 -) Execute a aplicação através do servidor nativo do PHP:
