@@ -1,0 +1,21 @@
+{
+    "name": "thiiagoms/opinion-box",
+    "description": "Teste técnico sobre a opinion Box",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+      {
+        "name": "thiiagoms",
+        "email": "thiiagoms@proton.me"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "OpinionBox\\": "src/"
+      }
+    },
+    "require": {
+      "ext-pdo": "*",
+      "vlucas/phpdotenv": "^5.5"
+    }
+}
