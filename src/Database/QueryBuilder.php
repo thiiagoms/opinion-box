@@ -27,12 +27,10 @@ class QueryBuilder extends Connection
     private function execute(string $query, array $params = []): bool|PDOStatement
     {
         try {
-
             $stmt = $this->conn->prepare($query);
             $stmt->execute($params);
 
             return $stmt;
-
         } catch (\PDOException $e) {
             echo "Falha ao executar a query: {$e->getMessage()}";
             exit;
@@ -115,7 +113,7 @@ class QueryBuilder extends Connection
     {
         $fields = array_keys($params);
 
-        $query = 'UPDATE '.$table.' SET '.implode('=?,',$fields).'=? WHERE '.$where;
+        $query = 'UPDATE ' . $table . ' SET ' . implode('=?,', $fields) . '=? WHERE ' . $where;
 
         $this->execute($query, array_values($params));
     }

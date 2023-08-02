@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/resources/views/header.php';
 
 if (isset($_POST['cadastrar'])) {
-
     require_once __DIR__ . '/bootstrap.php';
 
     $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -21,7 +22,7 @@ if (isset($_POST['cadastrar'])) {
 }
 ?>
 
-<?php if ($result['status'] === 'error'): ?>
+<?php if (isset($result) && $result['status'] === 'error') : ?>
     <div class="alert alert-danger" role="alert">
         <?= $result['message']; ?>
     </div>

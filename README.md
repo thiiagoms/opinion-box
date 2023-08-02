@@ -10,6 +10,10 @@
         <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"
             alt="php" width="70"
         >
+        <img
+            src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"
+            alt="Docker"
+        >
     </p>
 </div>
 
@@ -20,10 +24,7 @@
 
 ## Dependências
 
-- PHP8.1+
-- MySQL
-- Git
-- Composer
+- Docker :whale:
 
 ## Instalação
 
@@ -40,19 +41,15 @@ $ cd opinion-box
 opinion-box $
 ```
 
-03 -) Faça uma cópia do arquivo `.env.example` para `.env` e adiciona as credenciais do seu banco de dados:
+03 -) Faça uma cópia do arquivo `.env.example` para `.env`:
 ```bash
 opinion-box $ cp .env.example .env
-opinion-box $ vim .env
-
-DATABASE_HOST=
-DATABASE_PORT=
-DATABASE_NAME=
-DATABASE_USER=
-DATABASE_PASS=
 ```
 
-04 -) Importe o banco de dados localizado em `infra/database.sql` para seu servidor.
+04 -) Faça o **up** dos containers:
+```bash
+opinion-box $ docker-compose up -d
+```
 
 05 -) instale as dependências do projeto utilizando o composer:
 ```bash
@@ -61,9 +58,12 @@ opinion-box $ composer install
 
 ## Uso
 
-01 -) Execute a aplicação através do servidor nativo do PHP:
-```bash
-opinion-box $ php -S localhost:80000
-```
+01 -) Vá até o link da aplicação `http://localhost:8000`
 
-02 -) Vá até o link da aplicação `http://localhost:8000`
+## Bonus
+
+01 -) Para executar o lint (`phpcs`) e seu fix (`phpcbf`) na aplicação:
+```bash
+opinion-box $ docker exec opinionbox-app composer phpcs src
+opinion-box $ docker exec opinionbox-app composer phpcbf src
+```

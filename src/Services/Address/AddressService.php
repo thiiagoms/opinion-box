@@ -73,8 +73,7 @@ class AddressService extends Service
 
         $addressWithZipCodes = [];
 
-        foreach($addressData as $key => $address) {
-
+        foreach ($addressData as $key => $address) {
             $query = "
                 SELECT count(id) AS quantity
                 FROM zipcodes
@@ -103,8 +102,7 @@ class AddressService extends Service
 
         $addresWithMoreZipCodes = [];
 
-        foreach($addressData as $key => $address) {
-
+        foreach ($addressData as $key => $address) {
             $query = "
                 SELECT count(zipcodes.id) AS quantity, address.neighborhood
                 FROM zipcodes

@@ -13,13 +13,11 @@ use OpinionBox\Services\Service;
 
 class ClientService extends Service
 {
-
-    public function __construct (
+    public function __construct(
         private readonly AddressService $addressService,
         private readonly ZipCodeService $zipCodeService,
-        private ClientRepository        $clientRepository
-    )
-    {
+        private ClientRepository $clientRepository
+    ) {
     }
 
     /**
