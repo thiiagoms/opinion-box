@@ -4,7 +4,6 @@ require_once __DIR__ . '/resources/views/header.php';
 require_once __DIR__ . '/bootstrap.php';
 
 if (isset($_GET['id'])) {
-
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
     if (!$id) {
@@ -15,8 +14,7 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST['atualizar'])) {
-
-    $data = filter_input_array(INPUT_POST , FILTER_SANITIZE_SPECIAL_CHARS);
+    $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
     if (!$data) {
         $result = ['status' => 'error', 'message' => 'Falha no cadastro, tente novamente mais tarde!!'];
@@ -27,13 +25,13 @@ if (isset($_POST['atualizar'])) {
 }
 ?>
 
-<?php if (isset($result) && $result['status'] === 'error'): ?>
+<?php if (isset($result) && $result['status'] === 'error') : ?>
     <div class="alert alert-danger" role="alert">
         <?= $result['message']; ?>
     </div>
 <?php endif; ?>
 
-<?php if (isset($client)): ?>
+<?php if (isset($client)) : ?>
 <form class="row g-3" method="post">
     <div class="col-md-6">
         <label for="nome" class="form-label">Nome</label>
