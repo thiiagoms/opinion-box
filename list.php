@@ -16,7 +16,7 @@ $clients = $app->index();
     </tr>
     </thead>
     <tbody>
-    <?php foreach($clients as $key => $client): ?>
+    <?php foreach ($clients as $key => $client) : ?>
         <tr>
             <td>
                 <?= $client['name']; ?>

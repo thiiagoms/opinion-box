@@ -17,6 +17,7 @@ use PDOException;
  */
 class Connection
 {
+    use Credentials;
 
     /**
      * @var string
@@ -48,8 +49,6 @@ class Connection
      */
     protected PDO $conn;
 
-    use Credentials;
-
     /**
      * @return PDO
      */
@@ -58,7 +57,8 @@ class Connection
         $this->load();
 
         try {
-            $this->conn = new PDO("mysql:host={$this->dbHost};port={$this->dbPort};dbname={$this->dbName}",
+            $this->conn = new PDO(
+                "mysql:host={$this->dbHost};port={$this->dbPort};dbname={$this->dbName}",
                 $this->dbUser,
                 $this->dbPass
             );
@@ -67,8 +67,7 @@ class Connection
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return $this->conn;
-
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo "Datbase connection error: {$e->getMessage()}";
             exit;
         }

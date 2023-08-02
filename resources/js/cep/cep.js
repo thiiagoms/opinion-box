@@ -18,9 +18,9 @@ document.getElementById('searchCep').addEventListener('click', async () => {
                 if (ajax.readyState === 4) {
                     if (ajax.status === 200) {
                         resolve(JSON.parse(ajax.responseText));
-                    } else {
-                        reject(new Error('Falha ao buscar o CEP'));
+                        return;
                     }
+                    reject(new Error('Falha ao buscar o CEP'));
                 }
             };
             ajax.send();

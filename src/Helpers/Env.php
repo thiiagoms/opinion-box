@@ -6,7 +6,6 @@ namespace OpinionBox\Helpers;
 
 use Dotenv\Dotenv;
 
-
 class Env
 {
     /**

@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  app:
+    build:
+      args:
+        user: ${USER}
+        uid: 1000
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    container_name: opinionbox-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    networks:
+      - opinionbox
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8000:8000"
+  db:
+    image: mysql:5.7
+    ports:
+      - "8083:3306"
+    container_name: opinionbox-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: opinionbox
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker/mysql/db.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - opinionbox
+networks:
+  opinionbox:
+    driver: bridge

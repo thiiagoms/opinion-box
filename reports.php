@@ -2,26 +2,25 @@
     require_once __DIR__ . '/resources/views/header.php';
     require_once __DIR__ . '/bootstrap.php';
 
-    if (isset($_POST['buscar'])) {
+if (isset($_POST['buscar'])) {
+    $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+    $clientName   = addslashes($data['nome']);
+    $clientCPF    = addslashes($data['cpf']);
+    $reportFilter = addslashes($data['reportFilter']);
 
-        $clientName   = addslashes($data['nome']);
-        $clientCPF    = addslashes($data['cpf']);
-        $reportFilter = addslashes($data['reportFilter']);
-
-        if ($reportFilter === 'fullReport') {
-            $clientsReport =  $app->clientReport($clientName, $clientCPF);
-        }
-
-        if ($reportFilter === 'zipCodeByAddress') {
-            $zipCodeByAddressReport = $app->zipCodesByAddress();
-        }
-
-        if ($reportFilter === 'addresWithMoreZipCodes') {
-            $addressWithMoreZipCodesReport = $app->addressWithMoreZipCodes();
-        }
+    if ($reportFilter === 'fullReport') {
+        $clientsReport =  $app->clientReport($clientName, $clientCPF);
     }
+
+    if ($reportFilter === 'zipCodeByAddress') {
+        $zipCodeByAddressReport = $app->zipCodesByAddress();
+    }
+
+    if ($reportFilter === 'addresWithMoreZipCodes') {
+        $addressWithMoreZipCodesReport = $app->addressWithMoreZipCodes();
+    }
+}
 ?>
 
 <form class="row g-3" method="post">
@@ -73,7 +72,7 @@
 </form>
 
 <!--- Full clients reports -->
-<?php if(isset($clientsReport)): ?>
+<?php if (isset($clientsReport)) : ?>
 <table class="table" aria-label="Listagem de clientes">
         <thead>
         <tr>
@@ -88,7 +87,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach($clientsReport as $key => $client): ?>
+        <?php foreach ($clientsReport as $key => $client) : ?>
             <tr>
                 <td>
                     <?= $client['name']; ?>
@@ -121,7 +120,7 @@
 <?php endif; ?>
 
 <!-- Address with more zipcodes -->
-<?php if(isset($zipCodeByAddressReport)): ?>
+<?php if (isset($zipCodeByAddressReport)) : ?>
 <table class="table" aria-label="Listagem de clientes">
     <thead>
         <tr>
@@ -130,7 +129,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($zipCodeByAddressReport as $key => $addressData): ?>
+        <?php foreach ($zipCodeByAddressReport as $key => $addressData) : ?>
             <tr>
                 <td>
                     <?= $addressData['neighborhood']; ?>
@@ -145,7 +144,7 @@
 <?php endif; ?>
 
 <!-- Address with more than onee zipcodes -->
-<?php if (isset($addressWithMoreZipCodesReport)): ?>
+<?php if (isset($addressWithMoreZipCodesReport)) : ?>
 <table class="table" aria-label="Listagem de clientes">
     <thead>
     <tr>
@@ -153,7 +152,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach($addressWithMoreZipCodesReport as $key => $addressWithMoreZipCodes): ?>
+    <?php foreach ($addressWithMoreZipCodesReport as $key => $addressWithMoreZipCodes) : ?>
         <tr>
             <td>
                 <?= $addressWithMoreZipCodes['neighborhood']; ?>
