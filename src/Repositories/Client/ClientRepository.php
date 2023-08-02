@@ -32,4 +32,3 @@ class ClientRepository extends Repository
         return $this->rawQuery($sql);
     }
 }
-
